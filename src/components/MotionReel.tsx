@@ -5,33 +5,33 @@ import { Volume2, VolumeX, Play } from 'lucide-react';
 const reels = [
     {
         id: 1,
-        title: 'Minimalist Motion',
-        url: 'https://joy1.videvo.net/videvo_files/video/free/2019-11/large_watermarked/190828_27_SuperTrees_Vertical_14_preview.mp4',
-        category: 'Motion Design'
+        title: 'Pure Essential Oils',
+        url: '/videos/skincare.mp4',
+        category: 'Product Film'
     },
     {
         id: 2,
-        title: 'Cyberpunk Aesthetic',
-        url: 'https://joy1.videvo.net/videvo_files/video/free/2019-09/large_watermarked/190915_01_Backpack_Vertical_11_preview.mp4',
-        category: 'VFX'
+        title: 'Sleep Intense',
+        url: '/videos/sleep_elixir.mp4',
+        category: 'Body Elixir'
     },
     {
         id: 3,
-        title: 'Fluid Narratives',
-        url: 'https://joy1.videvo.net/videvo_files/video/free/2021-04/large_watermarked/210420_01_Glimmer_Vertical_01_preview.mp4',
-        category: 'Brand Film'
+        title: 'Orchid Paradise',
+        url: '/videos/orchid_paradise.mp4',
+        category: 'Luxury Skincare'
     },
     {
         id: 4,
-        title: 'Architectural Movement',
-        url: 'https://joy1.videvo.net/videvo_files/video/free/2021-08/large_watermarked/210804_01_Park_Vertical_01_preview.mp4',
-        category: '3D Render'
+        title: 'The Essential Ritual',
+        url: '/videos/sleep_ritual.mp4',
+        category: 'Sleep Care'
     },
     {
         id: 5,
-        title: 'Future Interfaces',
-        url: 'https://joy1.videvo.net/videvo_files/video/free/2022-01/large_watermarked/220112_01_Nature_Vertical_01_preview.mp4',
-        category: 'UI Motion'
+        title: 'CECO New Year',
+        url: '/videos/ceco_new_year.mp4',
+        category: 'Seasonal Wish'
     }
 ];
 
@@ -50,15 +50,31 @@ const ReelTile = ({ reel }: { reel: any }) => {
     };
 
     useEffect(() => {
+        // We only want to set initial playing state, not start playback
         if (videoRef.current) {
-            videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+            setIsPlaying(!videoRef.current.paused);
         }
     }, []);
+
+    const handleMouseEnter = () => {
+        if (videoRef.current) {
+            videoRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (videoRef.current) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+        }
+    };
 
     return (
         <motion.div
             className="reel-tile"
             whileHover={{ y: -15, scale: 1.02 }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             style={{
                 flex: '0 0 auto',
@@ -76,7 +92,6 @@ const ReelTile = ({ reel }: { reel: any }) => {
             <video
                 ref={videoRef}
                 src={reel.url}
-                autoPlay
                 loop
                 muted
                 playsInline
