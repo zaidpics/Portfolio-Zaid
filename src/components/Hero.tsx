@@ -1,69 +1,99 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import React from 'react';
+import './Hero.css';
+import DistortionImage from './DistortionImage';
 
 const Hero = () => {
     return (
-        <section id="hero" style={{ height: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
-            <div className="container">
+        <section className="hero-section" id="hero">
+            {/* Full Screen WebGL Distortion Background */}
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 1,
+                opacity: 0.3,
+                pointerEvents: 'auto',
+            }}>
+                <React.Suspense fallback={null}>
+                    <DistortionImage image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" />
+                </React.Suspense>
+            </div>
+
+            <div className="hero-container">
                 <motion.div
+                    className="hero-centered-content"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    <span style={{ color: 'var(--accent-vibrant)', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.8rem', display: 'block', marginBottom: '20px' }}>
-                        Creative Designer & Developer
-                    </span>
-                    <h1 style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 1, marginBottom: '30px' }}>
-                        Crafting <span className="text-gradient">Digital</span><br />
-                        Experiences<span style={{ color: 'var(--accent-vibrant)' }}>.</span>
-                    </h1>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '600px', marginBottom: '40px', lineHeight: 1.6 }}>
-                        Merging aesthetics with functional code to build premium digital products that stand out in the noise.
-                    </p>
-
-                    <div style={{ display: 'flex', gap: '20px' }}>
-                        <motion.a
-                            href="#work"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{ background: 'var(--text-main)', color: 'var(--bg-primary)', padding: '16px 32px', borderRadius: '100px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '10px' }}
-                        >
-                            View My Work <ArrowRight size={18} />
-                        </motion.a>
-                        <motion.a
-                            href="#contact"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="glass"
-                            style={{ color: 'var(--text-main)', padding: '16px 32px', borderRadius: '100px', fontWeight: 600 }}
-                        >
-                            Contact Me
-                        </motion.a>
-                    </div>
+                    <h1 className="hero-name">Zaid Jauffer</h1>
+                    <h2 className="hero-role">CREATIVE DESIGNER</h2>
                 </motion.div>
             </div>
 
-            {/* Decorative Background Elements */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                    x: [0, 50, 0],
-                    y: [0, -50, 0]
-                }}
-                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                style={{
-                    position: 'absolute',
-                    top: '20%',
-                    right: '-5%',
-                    width: '500px',
-                    height: '500px',
-                    background: 'radial-gradient(circle, var(--accent-vibrant) 0%, transparent 70%)',
-                    filter: 'blur(80px)',
-                    zIndex: -1,
-                    opacity: 0.3
-                }}
-            />
+            <style>{`
+                .hero-section {
+                    min-height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 5%;
+                    width: 100%;
+                    position: relative;
+                    background: var(--hero-gradient); /* Pure Black */
+                    overflow: hidden;
+                }
+
+                .hero-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    max-width: 1600px;
+                    position: relative;
+                    z-index: 10;
+                    pointer-events: none;
+                }
+
+                .hero-centered-content {
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1rem;
+                }
+
+                .hero-name {
+                    font-family: var(--font-serif);
+                    font-style: italic;
+                    font-size: clamp(4rem, 15vw, 10rem); /* Significantly bigger */
+                    font-weight: 400;
+                    color: var(--text-main);
+                    letter-spacing: -0.04em;
+                    line-height: 1;
+                    white-space: nowrap; /* Prevent wrapping if possible on large screens */
+                }
+
+                .hero-role {
+                    font-family: var(--font-family);
+                    font-size: clamp(1rem, 2vw, 1.5rem);
+                    font-weight: 600;
+                    letter-spacing: 0.4em;
+                    text-transform: uppercase;
+                    color: var(--text-muted);
+                    margin-top: 16px;
+                }
+
+                /* Responsive */
+                @media (max-width: 768px) {
+                   .hero-name {
+                        font-size: 3.5rem;
+                   }
+                }
+            `}</style>
         </section>
     );
 };

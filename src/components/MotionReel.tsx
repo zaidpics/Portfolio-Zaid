@@ -84,8 +84,8 @@ const ReelTile = ({ reel }: { reel: any }) => {
                 overflow: 'hidden',
                 position: 'relative',
                 scrollSnapAlign: 'center',
-                backgroundColor: '#1a1a1a',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                backgroundColor: 'var(--card-bg)',
+                boxShadow: 'var(--card-shadow)',
                 cursor: 'pointer',
             }}
         >
@@ -101,7 +101,7 @@ const ReelTile = ({ reel }: { reel: any }) => {
             {/* Loading/Play fallback if not autoplaying */}
             {!isPlaying && (
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.5)' }}>
-                    <Play fill="white" size={48} />
+                    <Play fill="white" size={48} strokeWidth={0} />
                 </div>
             )}
 
@@ -167,11 +167,11 @@ const ReelTile = ({ reel }: { reel: any }) => {
                 <AnimatePresence mode="wait">
                     {isMuted ? (
                         <motion.div key="muted" initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 45 }}>
-                            <VolumeX size={20} />
+                            <VolumeX size={20} fill="currentColor" strokeWidth={0} />
                         </motion.div>
                     ) : (
                         <motion.div key="unmuted" initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 45 }}>
-                            <Volume2 size={20} />
+                            <Volume2 size={20} fill="currentColor" strokeWidth={0} />
                         </motion.div>
                     )}
                 </AnimatePresence>
@@ -186,7 +186,7 @@ const MotionReel = () => {
     return (
         <section id="motion" style={{
             padding: '140px 0',
-            background: 'radial-gradient(circle at top, #121212, #0a0a0a)',
+            background: 'var(--motion-bg)',
             overflow: 'hidden',
             position: 'relative'
         }}>

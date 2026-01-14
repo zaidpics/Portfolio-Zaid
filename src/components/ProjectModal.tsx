@@ -86,10 +86,9 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                             flexDirection: 'column',
                             gap: '40px',
                             alignItems: 'center',
-                            scrollbarWidth: 'none',
                         }}
                         onClick={(e) => e.stopPropagation()}
-                        className="hide-scrollbar"
+                        data-lenis-prevent
                     >
                         {project.images?.map((img, index) => (
                             <img
@@ -105,12 +104,6 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                             />
                         ))}
                     </motion.div>
-
-                    <style>{`
-            .hide-scrollbar::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
                 </motion.div>
             )}
         </AnimatePresence>

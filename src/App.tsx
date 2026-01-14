@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
-import Navbar from './components/Navbar';
+import FloatingNavbar from './components/FloatingNavbar';
 import Hero from './components/Hero';
 import Work from './components/Work';
 import MotionReel from './components/MotionReel';
 import Services from './components/Services';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   useEffect(() => {
@@ -28,12 +30,14 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+      <FloatingNavbar />
+      <ThemeToggle />
       <main>
         <Hero />
         <Work />
         <MotionReel />
         <Services />
+        <Contact />
       </main>
       <Footer />
     </div>

@@ -1,0 +1,154 @@
+.contact-section {
+    position: relative;
+    padding: 100px 5%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Optional: Subtle texture or gradient overlay if needed */
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 1400px;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Left Side */
+.contact-title {
+    font-family: var(--font-family);
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    line-height: 0.9;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.contact-title .serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    /* Matches the layout: "Touch" on new line, possibly indented or styled */
+    display: block;
+    margin-top: 10px;
+}
+
+.contact-message {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+/* Right Side - Form Card */
+.glass-form-card {
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    padding: 60px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+}
+
+.form-header {
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle dark fill */
+    border: 1px solid transparent;
+    /* No border by default */
+    border-radius: 12px;
+    padding: 16px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.submit-btn {
+    margin-top: 20px;
+    background: #ffffff;
+    color: #000000;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 18px;
+    border-radius: 100px;
+    /* Pill shape */
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .glass-form-card {
+        padding: 40px;
+        margin: 0 auto;
+    }
+
+    .contact-left {
+        text-align: center;
+    }
+
+    .contact-message {
+        margin: 0 auto;
+    }
+}

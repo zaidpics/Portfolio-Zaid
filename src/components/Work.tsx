@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ProjectModal from './ProjectModal';
 
-const projects = [
+export const projects = [
     {
         title: 'Award Winning Skincare',
         category: 'Visual Design',
@@ -94,7 +94,11 @@ const projects = [
         images: [
             "https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/d7cb38211648989.67277cb196ab8.png",
             "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4550c6211648989.67277dbb5037a.png",
-            "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/99cd54211648989.67277dbb52702.png"
+            "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/99cd54211648989.67277dbb52702.png",
+            "/projects/evolution-auto/01.png",
+            "/projects/evolution-auto/02.png",
+            "/projects/evolution-auto/03.png",
+            "/projects/evolution-auto/04.png"
         ]
     }
 ];
