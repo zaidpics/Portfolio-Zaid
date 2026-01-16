@@ -1,200 +1,109 @@
-:root {
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    --glass-blur: blur(12px);
-    --glass-blur-hover: blur(16px);
-    --hero-transition: all 0.4s ease-in-out;
-}
-
 .hero-section {
     position: relative;
-    height: 100vh;
+    height: 90vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--bg-primary);
     overflow: hidden;
-    background: linear-gradient(to bottom, #6a1b9a, #ab47bc);
-    /* Fallback/Dark base */
+    padding: 0 5%;
 }
 
-/* Vibrant Animated Background */
-.hero-bg-blobs {
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero-container {
     width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.6;
-    animation: float 20s infinite ease-in-out alternate;
-}
-
-.blob-1 {
-    width: 50vw;
-    height: 50vw;
-    background: linear-gradient(135deg, #ff00cc, #333399);
-    top: -10%;
-    left: -10%;
-    animation-delay: 0s;
-}
-
-.blob-2 {
-    width: 40vw;
-    height: 40vw;
-    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-    bottom: -10%;
-    right: -10%;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    width: 30vw;
-    height: 30vw;
-    background: linear-gradient(135deg, #f12711, #f5af19);
-    bottom: 20%;
-    left: 20%;
-    animation-delay: -10s;
-}
-
-@keyframes float {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(30px, 50px) scale(1.1);
-    }
-
-    100% {
-        transform: translate(-20px, -30px) scale(0.9);
-    }
-}
-
-/* Glass Card */
-.tilt-container {
-    perspective: 1000px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.glass-card {
+    max-width: 1400px;
     position: relative;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    border-radius: 24px;
-    max-width: 800px;
-    width: 90%;
-    color: white;
-    text-align: center;
-    transform-style: preserve-3d;
-    overflow: hidden;
-    /* Contains the glare */
-}
-
-.glass-card .card-content {
-    padding: 4rem;
-    transform: translateZ(20px);
-    /* Pushes content forward for depth */
-}
-
-/* Glare Effect */
-.glass-glare {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0) 50%);
-    transform: rotate(30deg);
-    pointer-events: none;
-    mix-blend-mode: overlay;
     z-index: 2;
-}
-
-/* Removed hover effect on card directly as it's now controlled by JS/Springs */
-/* But we keep button hovers */
-
-.hero-subtitle {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-    display: block;
-    opacity: 0.9;
-    font-weight: 600;
-}
-
-.hero-title {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #fff, #b3b3b3);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2.5rem;
-    opacity: 0.8;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-buttons {
     display: flex;
-    gap: 1.5rem;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
-.btn {
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
+.hero-headline {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(3rem, 8vw, 7.5rem);
+    /* Slightly adjusted max for better flow */
+    line-height: 1.1;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    text-align: center;
+
+    /* Ensure the text wraps nicely */
+    max-width: 18ch;
+    /* Limits width to force balanced breaks if needed, or allow flow */
+    width: 100%;
+    margin: 0 auto;
+
+    display: block;
+    /* Treat as block to allow text-align center to work on inline children */
 }
 
-.btn-primary {
-    background: white;
-    color: black;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.hero-text-content {
+    /* Use wrapping strategy */
+    text-wrap: balance;
+    /* Modern browser support for balanced lines */
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+/* Adjust animation wrapper to sit on baseline */
+.hero-anim-wrapper {
+    position: relative;
+    display: inline-flex;
+    width: 5.5em;
+    /* Fixed width for "experiences" */
+    height: 1em;
+    /* height matching line-height roughly */
+    vertical-align: baseline;
+    /* Align with text baseline */
+    overflow: hidden;
+    /* Mask the rising/falling text */
 }
 
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+/* Spacer to ensure gap between "into" and words provided by space char or manual margin. 
+   Using explicit space character in JSX with font-size. 
+*/
+.hero-spacer {
+    font-size: 0.5em;
+    /* adjustable gap if needed, or standard space */
+    display: inline;
 }
 
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+.hero-dynamic {
+    display: inline-block;
+    white-space: nowrap;
+    font-style: italic;
+    color: var(--text-main);
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /* Align to bottom/baseline */
+    width: 100%;
+    /* Ensure it takes width */
+    height: 100%;
+    line-height: 1;
+    /* Match container */
+
+    /* Reset transform origin if needed */
+}
+
+/* Restore the Y-axis animation in css modules/framer motion */
+/* Motion logic handles the classes styles via inline styles mostly */
+
+
+.hero-bg-ambience {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-headline {
+        max-width: 100%;
+        /* Let it fill on mobile */
+    }
 }

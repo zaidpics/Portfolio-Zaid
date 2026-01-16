@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Work from './components/Work';
 import MotionReel from './components/MotionReel';
 import Services from './components/Services';
+import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
@@ -34,8 +35,10 @@ function App() {
       <ThemeToggle />
       <main>
         <Hero />
+        <About />
         <Work />
         <MotionReel />
+
         <Services />
         <Contact />
       </main>
