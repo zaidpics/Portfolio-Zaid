@@ -23,48 +23,33 @@
     font-family: var(--font-display);
     font-weight: 400;
     font-size: clamp(3rem, 8vw, 7.5rem);
-    /* Slightly adjusted max for better flow */
     line-height: 1.1;
     color: var(--text-main);
     letter-spacing: -0.02em;
     text-align: center;
 
-    /* Ensure the text wraps nicely */
     max-width: 18ch;
-    /* Limits width to force balanced breaks if needed, or allow flow */
     width: 100%;
     margin: 0 auto;
 
     display: block;
-    /* Treat as block to allow text-align center to work on inline children */
 }
 
 .hero-text-content {
-    /* Use wrapping strategy */
     text-wrap: balance;
-    /* Modern browser support for balanced lines */
 }
 
-/* Adjust animation wrapper to sit on baseline */
 .hero-anim-wrapper {
     position: relative;
     display: inline-flex;
     width: 5.5em;
-    /* Fixed width for "experiences" */
     height: 1em;
-    /* height matching line-height roughly */
     vertical-align: baseline;
-    /* Align with text baseline */
     overflow: hidden;
-    /* Mask the rising/falling text */
 }
 
-/* Spacer to ensure gap between "into" and words provided by space char or manual margin. 
-   Using explicit space character in JSX with font-size. 
-*/
 .hero-spacer {
     font-size: 0.5em;
-    /* adjustable gap if needed, or standard space */
     display: inline;
 }
 
@@ -77,19 +62,10 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    /* Align to bottom/baseline */
     width: 100%;
-    /* Ensure it takes width */
     height: 100%;
     line-height: 1;
-    /* Match container */
-
-    /* Reset transform origin if needed */
 }
-
-/* Restore the Y-axis animation in css modules/framer motion */
-/* Motion logic handles the classes styles via inline styles mostly */
-
 
 .hero-bg-ambience {
     position: absolute;
@@ -100,10 +76,8 @@
     z-index: 0;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-headline {
         max-width: 100%;
-        /* Let it fill on mobile */
     }
 }
