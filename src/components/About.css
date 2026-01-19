@@ -95,18 +95,10 @@
     line-height: 0.95;
     margin-bottom: 32px;
     font-family: var(--font-family);
-    text-transform: uppercase;
     letter-spacing: -0.03em;
 }
 
-.text-stroke {
-    /* Optional: Outline effect to match reference "Motion Graphic" / "Designer" contrast */
-    /*-webkit-text-stroke: 1px var(--text-main);
-   color: transparent;*/
-    color: var(--text-muted);
-    /* Using muted for contrast instead of stroke if preferred */
-    opacity: 0.8;
-}
+
 
 .about-description {
     font-size: 1.125rem;

@@ -128,7 +128,7 @@ const Work = () => {
                     transition={{ duration: 0.6 }}
                     style={{ marginBottom: '60px' }}
                 >
-                    <h2 style={{ fontSize: '3rem', marginBottom: '10px' }}>Selected Work</h2>
+                    <h2 style={{ fontSize: '3rem', marginBottom: '10px' }}>Selected <span className="italic-highlight">Work</span></h2>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>A collection of projects fetched directly from my Behance portfolio.</p>
                 </motion.div>
 
@@ -158,7 +158,7 @@ const Work = () => {
                                 <span style={{ color: project.color, fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
                                     {project.category}
                                 </span>
-                                <h3 style={{ fontSize: '1.5rem', marginTop: '10px' }}>{project.title}</h3>
+                                <h3 style={{ fontSize: '1.5rem', marginTop: '10px', fontFamily: 'var(--font-family)' }}>{project.title}</h3>
                             </div>
                         </motion.div>
                     ))}

@@ -118,7 +118,7 @@ const About = () => {
                         </div>
 
                         <h2 className="about-headline">
-                            Motion Graphic <br /><span className="text-stroke">Designer</span>
+                            <span className="italic-highlight">Motion Graphic</span> <br />Designer
                         </h2>
 
                         <p className="about-description">

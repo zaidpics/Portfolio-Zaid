@@ -17,7 +17,7 @@ const Contact = () => {
                 >
                     <h2 className="contact-title">
                         Get in<br />
-                        <span className="serif-italic">Touch</span>
+                        <span className="italic-highlight">Touch</span>
                     </h2>
                     <p className="contact-message">
                         Great ideas deserve exceptional visuals.<br />

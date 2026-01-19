@@ -47,7 +47,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                         }}
                     >
                         <div>
-                            <h2 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{project.title}</h2>
+                            <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-family)', fontWeight: 600 }}>{project.title}</h2>
                             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{project.category}</p>
                         </div>
                         <button

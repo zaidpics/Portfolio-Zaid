@@ -35,7 +35,7 @@ const Services = () => {
                     transition={{ duration: 0.6 }}
                     style={{ marginBottom: '60px', textAlign: 'center' }}
                 >
-                    <h2 style={{ fontSize: '3rem', marginBottom: '10px' }}>Our Services</h2>
+                    <h2 style={{ fontSize: '3rem', marginBottom: '10px' }}>Our <span className="italic-highlight">Services</span></h2>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto' }}>Combining design and technology to deliver outstanding digital solutions.</p>
                 </motion.div>
 

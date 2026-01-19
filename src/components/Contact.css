@@ -27,14 +27,7 @@
     margin-bottom: 30px;
 }
 
-.contact-title .serif-italic {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    /* Matches the layout: "Touch" on new line, possibly indented or styled */
-    display: block;
-    margin-top: 10px;
-}
+
 
 .contact-message {
     font-size: 1.1rem;
