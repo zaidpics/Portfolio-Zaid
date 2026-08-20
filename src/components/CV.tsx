@@ -1,11 +1,18 @@
 import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 import './CV.css';
 
 const experiences = [
     {
+        role: "SENIOR MOTION GRAPHIC DESIGNER",
+        company: "SPA CEYLON",
+        period: "April 2026 – Present",
+        description: "Lead motion design direction, high-end 3D product animations, and visual storytelling for international brand campaigns and luxury product launches across global digital platforms."
+    },
+    {
         role: "MOTION GRAPHIC DESIGNER",
-        company: "SPA CEYLON – INTERNATIONAL",
-        period: "Jan 2025 – Present",
+        company: "SPA CEYLON",
+        period: "Jan 2025 – March 2026",
         description: "Create high-quality motion graphics and brand visuals for campaigns, product launches, and digital ads. Translate brand identity into cinematic motion-led storytelling for social and marketing platforms."
     },
     {
@@ -34,24 +41,6 @@ const tools = [
 
 const coreFocus = [
     "Brand Identity", "Logo Design", "Product Design", "Packaging Design", "Campaign Visuals", "Motion Design", "Typography"
-];
-
-const education = [
-    {
-        degree: "DIPLOMA IN DIGITAL MARKETING",
-        institution: "ICBT Campus",
-        year: "2022"
-    },
-    {
-        degree: "DIPLOMA IN GRAPHIC DESIGNING",
-        institution: "ESOFT Metro Campus",
-        year: "2019"
-    },
-    {
-        degree: "GRAPHIC DESIGNING & MS OFFICE",
-        institution: "Future World IPS",
-        year: "2018"
-    }
 ];
 
 const CV = () => {
@@ -133,7 +122,7 @@ const CV = () => {
 
                         <div className="cv-divider"></div>
 
-                        {/* Education */}
+                        {/* Education & Certifications */}
                         <motion.div
                             className="cv-block"
                             initial={{ opacity: 0, x: 20 }}
@@ -141,17 +130,49 @@ const CV = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <h3 className="cv-column-title">EDUCATION</h3>
-                            <div className="education-list">
-                                {education.map((edu, index) => (
-                                    <div key={index} className="education-item">
-                                        <h4 className="edu-degree">{edu.degree}</h4>
+                            <h3 className="cv-column-title">EDUCATION & CERTIFICATIONS</h3>
+
+                            {/* Certification */}
+                            <div className="skills-group">
+                                <h4 className="skills-subtitle">CERTIFICATION</h4>
+                                <div className="education-list">
+                                    <div className="education-item">
+                                        <h4 className="edu-degree">Decipher 2021 IT Case Study Competition</h4>
                                         <div className="edu-details">
-                                            <span>{edu.institution}</span>
-                                            <span className="edu-year">{edu.year}</span>
+                                            <span>AIESEC in Sri Lanka</span>
+                                            <span className="edu-year">Issued Jun 2021</span>
+                                        </div>
+                                        <motion.a
+                                            href="https://drive.google.com/file/d/14a_zhOfzxxq_C_KFjy_MbF9msQpVoMjg/view"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="credential-btn"
+                                            whileHover={{ scale: 1.03 }}
+                                            whileTap={{ scale: 0.97 }}
+                                        >
+                                            Show Credential <ExternalLink size={14} />
+                                        </motion.a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Education */}
+                            <div className="skills-group" style={{ marginBottom: 0 }}>
+                                <h4 className="skills-subtitle">EDUCATION</h4>
+                                <div className="education-list">
+                                    <div className="education-item">
+                                        <h4 className="edu-degree">Higher National Diploma, Information Technology</h4>
+                                        <div className="edu-details">
+                                            <span>University of West London</span>
                                         </div>
                                     </div>
-                                ))}
+                                    <div className="education-item">
+                                        <h4 className="edu-degree">EDEXCEL IGCSE</h4>
+                                        <div className="edu-details">
+                                            <span>Colombo International School</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
 

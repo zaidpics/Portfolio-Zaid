@@ -4,11 +4,10 @@ import FloatingNavbar from './components/FloatingNavbar';
 import Hero from './components/Hero';
 import Work from './components/Work';
 import MotionReel from './components/MotionReel';
+import CV from './components/CV';
 import Services from './components/Services';
 import About from './components/About';
-import CV from './components/CV';
 import Contact from './components/Contact';
-import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 
 function App() {
@@ -37,14 +36,12 @@ function App() {
       <main>
         <Hero />
         <About />
-        <CV />
         <Work />
         <MotionReel />
-
+        <CV />
         <Services />
         <Contact />
       </main>
-      <Footer />
     </div>
   );
 }

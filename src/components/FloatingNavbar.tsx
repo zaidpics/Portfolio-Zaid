@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
-import { Home, Briefcase, User, Mail } from 'lucide-react';
+import { Home, Briefcase, Video, FileText, Layers, Mail } from 'lucide-react';
 
 const FloatingNavbar = () => {
     const navLinks = [
         { name: 'Home', icon: <Home size={18} />, href: '#' },
         { name: 'Work', icon: <Briefcase size={18} />, href: '#work' },
-        { name: 'About', icon: <User size={18} />, href: '#about' },
+        { name: 'Motion', icon: <Video size={18} />, href: '#motion' },
+        { name: 'CV', icon: <FileText size={18} />, href: '#resume' },
+        { name: 'Services', icon: <Layers size={18} />, href: '#services' },
         { name: 'Contact', icon: <Mail size={18} />, href: '#contact' },
     ];
 

@@ -1,10 +1,10 @@
 .cv-section {
     position: relative;
     padding: 120px 5%;
-    background-color: #050505;
-    /* Deep black */
-    color: #fff;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
     overflow: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .cv-container {
@@ -30,28 +30,24 @@
     letter-spacing: -0.02em;
     text-transform: uppercase;
     margin-bottom: 16px;
-    color: #fff;
+    color: var(--text-main);
 }
 
 .cv-underline {
     width: 60px;
     height: 2px;
     background-color: var(--accent-vibrant);
-    /* e.g., neon lime or predefined accent */
 }
-
 
 /* Grid Layout */
 .cv-grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    /* Timeline wider */
     gap: 80px;
 }
 
 .cv-column-title {
     font-family: var(--font-family);
-    /* Sans serif for functional headers */
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.15em;
@@ -60,12 +56,11 @@
     text-transform: uppercase;
 }
 
-
 /* Timeline (Left Column) */
 .timeline {
     position: relative;
     padding-left: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid var(--glass-border);
 }
 
 .timeline-item {
@@ -81,7 +76,6 @@
 .timeline-marker {
     position: absolute;
     left: -25px;
-    /* Adjust based on border/padding: center on line */
     top: 6px;
     width: 9px;
     height: 9px;
@@ -105,7 +99,7 @@
     font-size: 1.2rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--text-main);
     letter-spacing: 0.02em;
 }
 
@@ -132,7 +126,6 @@
     font-weight: 300;
     max-width: 90%;
 }
-
 
 /* Right Column (Skills & Education) */
 .cv-right {
@@ -164,26 +157,26 @@
 }
 
 .skill-pill {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     padding: 8px 16px;
     border-radius: 100px;
     font-size: 0.9rem;
-    color: #eee;
+    color: var(--text-main);
     transition: all 0.3s ease;
     cursor: default;
 }
 
 .skill-pill:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(114, 65, 255, 0.15);
     border-color: var(--accent-vibrant);
-    color: #fff;
+    color: var(--text-main);
 }
 
 .cv-divider {
     height: 1px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-border);
     margin: 20px 0 60px;
 }
 
@@ -195,7 +188,7 @@
 }
 
 .education-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--glass-border);
     padding-bottom: 12px;
 }
 
@@ -208,7 +201,7 @@
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 6px;
-    color: #fff;
+    color: var(--text-main);
 }
 
 .edu-details {
@@ -218,19 +211,39 @@
     color: var(--text-muted);
 }
 
+.credential-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: rgba(114, 65, 255, 0.12);
+    border: 1px solid rgba(114, 65, 255, 0.3);
+    color: var(--accent-vibrant);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.credential-btn:hover {
+    background: rgba(114, 65, 255, 0.25);
+    border-color: var(--accent-vibrant);
+    color: var(--text-main);
+    box-shadow: 0 0 15px rgba(114, 65, 255, 0.25);
+}
 
 /* Background Texture */
 .cv-bg-grid {
     position: absolute;
     inset: 0;
-    background-image:
-        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-image: radial-gradient(var(--glass-border) 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: 0.2;
     z-index: 0;
 }
-
 
 /* Responsive */
 @media (max-width: 968px) {
@@ -246,7 +259,7 @@
 
     .timeline-item {
         padding-left: 20px;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 1px solid var(--glass-border);
     }
 
     .timeline-marker {
