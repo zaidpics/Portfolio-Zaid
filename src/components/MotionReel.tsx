@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Play, ChevronDown, ChevronUp } from 'lucide-react';
+import { Volume2, VolumeX, Play, ChevronDown, ChevronUp, X } from 'lucide-react';
 
 const reels = [
     {
@@ -95,7 +95,7 @@ const reels = [
     }
 ];
 
-const ReelTile = ({ reel }: { reel: any }) => {
+const ReelTile = ({ reel, onClick }: { reel: any; onClick: () => void }) => {
     const [isMuted, setIsMuted] = useState(true);
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -131,6 +131,7 @@ const ReelTile = ({ reel }: { reel: any }) => {
     return (
         <motion.div
             className="reel-tile"
+            onClick={onClick}
             whileHover={{ y: -15, scale: 1.02 }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -236,11 +237,123 @@ const ReelTile = ({ reel }: { reel: any }) => {
     );
 };
 
+const ReelPreviewModal = ({ reel, onClose }: { reel: any | null; onClose: () => void }) => {
+    if (!reel) return null;
+
+    return (
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                style={{
+                    position: 'fixed',
+                    inset: 0,
+                    zIndex: 10000,
+                    background: 'rgba(0, 0, 0, 0.92)',
+                    backdropFilter: 'blur(20px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px'
+                }}
+                onClick={onClose}
+            >
+                {/* Header Bar */}
+                <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    left: '40px',
+                    right: '40px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    zIndex: 10
+                }}>
+                    <div>
+                        <span style={{ color: 'var(--accent-vibrant)', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px' }}>
+                            {reel.category}
+                        </span>
+                        <h3 style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 700, margin: '4px 0 0' }}>
+                            {reel.title}
+                        </h3>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        style={{
+                            background: 'rgba(255, 255, 255, 0.15)',
+                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                            borderRadius: '50%',
+                            width: '48px',
+                            height: '48px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#ffffff',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease'
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)'}
+                        onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'}
+                    >
+                        <X size={24} />
+                    </button>
+                </div>
+
+                {/* Actual Size Video Player */}
+                <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                        maxWidth: '90vw',
+                        maxHeight: '80vh',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: '24px',
+                        overflow: 'hidden',
+                        boxShadow: '0 25px 50px rgba(0,0,0,0.8)'
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <video
+                        src={reel.url}
+                        controls
+                        autoPlay
+                        playsInline
+                        style={{
+                            maxWidth: '100%',
+                            maxHeight: '80vh',
+                            objectFit: 'contain',
+                            borderRadius: '24px',
+                            backgroundColor: '#000'
+                        }}
+                    />
+                </motion.div>
+            </motion.div>
+        </AnimatePresence>
+    );
+};
+
 const MotionReel = () => {
     const [showAll, setShowAll] = useState(false);
+    const [selectedReel, setSelectedReel] = useState<any | null>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const initialReels = reels.slice(0, 5);
+
+    const openPreview = (reel: any) => {
+        setSelectedReel(reel);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closePreview = () => {
+        setSelectedReel(null);
+        document.body.style.overflow = 'unset';
+    };
 
     return (
         <section id="motion" style={{
@@ -287,7 +400,7 @@ const MotionReel = () => {
                     className="hide-scrollbar"
                 >
                     {initialReels.map((reel) => (
-                        <ReelTile key={reel.id} reel={reel} />
+                        <ReelTile key={reel.id} reel={reel} onClick={() => openPreview(reel)} />
                     ))}
                     <div style={{ flex: '0 0 5vw' }}></div>
                 </div>
@@ -306,7 +419,7 @@ const MotionReel = () => {
                     }}
                 >
                     {reels.map((reel) => (
-                        <ReelTile key={reel.id} reel={reel} />
+                        <ReelTile key={reel.id} reel={reel} onClick={() => openPreview(reel)} />
                     ))}
                 </motion.div>
             )}
@@ -340,10 +453,13 @@ const MotionReel = () => {
                         transition: 'all 0.3s ease'
                     }}
                 >
-                    {showAll ? 'Show Less' : 'View More Clips (15)'}
+                    {showAll ? 'SHOW LESS' : 'VIEW MORE'}
                     {showAll ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </motion.button>
             </div>
+
+            {/* Actual Size Preview Modal */}
+            <ReelPreviewModal reel={selectedReel} onClose={closePreview} />
 
             <style>{`
         .hide-scrollbar::-webkit-scrollbar {
