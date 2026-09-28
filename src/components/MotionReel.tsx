@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Play, ArrowUpRight } from 'lucide-react';
+import { Volume2, VolumeX, Play, ChevronDown, ChevronUp } from 'lucide-react';
 
 const reels = [
     {
@@ -32,6 +32,66 @@ const reels = [
         title: 'CECO New Year',
         url: '/videos/ceco_new_year.mp4',
         category: 'Seasonal Wish'
+    },
+    {
+        id: 6,
+        title: 'Motion Showcase 06',
+        url: '/videos/06.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 7,
+        title: 'Motion Showcase 07',
+        url: '/videos/07.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 8,
+        title: 'Motion Showcase 08',
+        url: '/videos/08.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 9,
+        title: 'Motion Showcase 09',
+        url: '/videos/09.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 10,
+        title: 'Motion Showcase 10',
+        url: '/videos/10.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 11,
+        title: 'Motion Showcase 11',
+        url: '/videos/11.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 12,
+        title: 'Motion Showcase 12',
+        url: '/videos/12.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 13,
+        title: 'Motion Showcase 13',
+        url: '/videos/13.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 14,
+        title: 'Motion Showcase 14',
+        url: '/videos/14.mp4',
+        category: 'Motion Graphic'
+    },
+    {
+        id: 15,
+        title: 'Motion Showcase 15',
+        url: '/videos/15.mp4',
+        category: 'Motion Graphic'
     }
 ];
 
@@ -50,7 +110,6 @@ const ReelTile = ({ reel }: { reel: any }) => {
     };
 
     useEffect(() => {
-        // We only want to set initial playing state, not start playback
         if (videoRef.current) {
             setIsPlaying(!videoRef.current.paused);
         }
@@ -98,14 +157,12 @@ const ReelTile = ({ reel }: { reel: any }) => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
 
-            {/* Loading/Play fallback if not autoplaying */}
             {!isPlaying && (
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.5)' }}>
                     <Play fill="white" size={48} strokeWidth={0} />
                 </div>
             )}
 
-            {/* Content Overlay */}
             <div style={{
                 position: 'absolute',
                 inset: 0,
@@ -140,7 +197,6 @@ const ReelTile = ({ reel }: { reel: any }) => {
                 </motion.h3>
             </div>
 
-            {/* Mute Toggle Control */}
             <motion.button
                 onClick={toggleMute}
                 whileHover={{ scale: 1.1 }}
@@ -181,7 +237,11 @@ const ReelTile = ({ reel }: { reel: any }) => {
 };
 
 const MotionReel = () => {
+    const [showAll, setShowAll] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    const initialReels = reels.slice(0, 5);
+    const remainingReels = reels.slice(5);
 
     return (
         <section id="motion" style={{
@@ -210,13 +270,14 @@ const MotionReel = () => {
                 </motion.div>
             </div>
 
+            {/* Initial 5 Clips Row */}
             <div
                 ref={scrollRef}
                 style={{
                     display: 'flex',
                     gap: '40px',
                     overflowX: 'auto',
-                    padding: '20px 5vw 80px',
+                    padding: '20px 5vw 40px',
                     scrollSnapType: 'x mandatory',
                     scrollbarWidth: 'none',
                     WebkitOverflowScrolling: 'touch',
@@ -224,19 +285,41 @@ const MotionReel = () => {
                 }}
                 className="hide-scrollbar"
             >
-                {reels.map((reel) => (
+                {initialReels.map((reel) => (
                     <ReelTile key={reel.id} reel={reel} />
                 ))}
-                {/* Spacer for end scroll balance */}
                 <div style={{ flex: '0 0 5vw' }}></div>
             </div>
 
-            {/* View More Button - Bottom Right */}
-            <div className="container" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '5vw' }}>
-                <motion.a
-                    href="https://www.behance.net/Zaid_Jauffer"
-                    target="_blank"
-                    rel="noopener noreferrer"
+            {/* Remaining Clips (06 to 15) in Numerical Order */}
+            <AnimatePresence>
+                {showAll && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: 'hidden' }}
+                    >
+                        <div style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '40px',
+                            justifyContent: 'center',
+                            padding: '20px 5vw 40px'
+                        }}>
+                            {remainingReels.map((reel) => (
+                                <ReelTile key={reel.id} reel={reel} />
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* View More / Show Less Button - Bottom Right */}
+            <div className="container" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '5vw', marginTop: '20px' }}>
+                <motion.button
+                    onClick={() => setShowAll(!showAll)}
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
                     whileTap={{ scale: 0.95 }}
                     style={{
@@ -251,15 +334,16 @@ const MotionReel = () => {
                         color: 'var(--text-main)',
                         fontWeight: 600,
                         fontSize: '0.95rem',
-                        textDecoration: 'none',
+                        cursor: 'pointer',
                         boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
                         transition: 'border-color 0.3s ease, background-color 0.3s ease'
                     }}
                     onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--accent-vibrant)'}
                     onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--glass-border)'}
                 >
-                    View More <ArrowUpRight size={18} />
-                </motion.a>
+                    {showAll ? 'Show Less' : 'View More'}
+                    {showAll ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </motion.button>
             </div>
 
             <style>{`
