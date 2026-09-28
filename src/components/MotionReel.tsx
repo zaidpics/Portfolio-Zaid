@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Play } from 'lucide-react';
+import { Volume2, VolumeX, Play, ArrowUpRight } from 'lucide-react';
 
 const reels = [
     {
@@ -229,6 +229,37 @@ const MotionReel = () => {
                 ))}
                 {/* Spacer for end scroll balance */}
                 <div style={{ flex: '0 0 5vw' }}></div>
+            </div>
+
+            {/* View More Button - Bottom Right */}
+            <div className="container" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '5vw' }}>
+                <motion.a
+                    href="https://www.behance.net/Zaid_Jauffer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        padding: '14px 28px',
+                        borderRadius: '100px',
+                        background: 'var(--glass-bg)',
+                        backdropFilter: 'var(--glass-blur)',
+                        border: '1px solid var(--glass-border)',
+                        color: 'var(--text-main)',
+                        fontWeight: 600,
+                        fontSize: '0.95rem',
+                        textDecoration: 'none',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+                        transition: 'border-color 0.3s ease, background-color 0.3s ease'
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--accent-vibrant)'}
+                    onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--glass-border)'}
+                >
+                    View More <ArrowUpRight size={18} />
+                </motion.a>
             </div>
 
             <style>{`
