@@ -241,7 +241,6 @@ const MotionReel = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const initialReels = reels.slice(0, 5);
-    const remainingReels = reels.slice(5);
 
     return (
         <section id="motion" style={{
@@ -256,7 +255,7 @@ const MotionReel = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    style={{ marginBottom: '80px', textAlign: 'center' }}
+                    style={{ marginBottom: '60px', textAlign: 'center' }}
                 >
                     <span style={{ color: 'var(--accent-vibrant)', fontWeight: 600, letterSpacing: '5px', textTransform: 'uppercase', fontSize: '0.8rem', display: 'block', marginBottom: '20px' }}>
                         Cinematic Experience
@@ -270,79 +269,79 @@ const MotionReel = () => {
                 </motion.div>
             </div>
 
-            {/* Initial 5 Clips Row */}
-            <div
-                ref={scrollRef}
-                style={{
-                    display: 'flex',
-                    gap: '40px',
-                    overflowX: 'auto',
-                    padding: '20px 5vw 40px',
-                    scrollSnapType: 'x mandatory',
-                    scrollbarWidth: 'none',
-                    WebkitOverflowScrolling: 'touch',
-                    perspective: '1000px'
-                }}
-                className="hide-scrollbar"
-            >
-                {initialReels.map((reel) => (
-                    <ReelTile key={reel.id} reel={reel} />
-                ))}
-                <div style={{ flex: '0 0 5vw' }}></div>
-            </div>
-
-            {/* Remaining Clips (06 to 15) in Numerical Order */}
-            <AnimatePresence>
-                {showAll && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        style={{ overflow: 'hidden' }}
-                    >
-                        <div style={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: '40px',
-                            justifyContent: 'center',
-                            padding: '20px 5vw 40px'
-                        }}>
-                            {remainingReels.map((reel) => (
-                                <ReelTile key={reel.id} reel={reel} />
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {/* Clips Display */}
+            {!showAll ? (
+                /* Initial 5 Clips Row Slider */
+                <div
+                    ref={scrollRef}
+                    style={{
+                        display: 'flex',
+                        gap: '40px',
+                        overflowX: 'auto',
+                        padding: '20px 5vw 40px',
+                        scrollSnapType: 'x mandatory',
+                        scrollbarWidth: 'none',
+                        WebkitOverflowScrolling: 'touch',
+                        perspective: '1000px'
+                    }}
+                    className="hide-scrollbar"
+                >
+                    {initialReels.map((reel) => (
+                        <ReelTile key={reel.id} reel={reel} />
+                    ))}
+                    <div style={{ flex: '0 0 5vw' }}></div>
+                </div>
+            ) : (
+                /* All 15 Clips Expanded Grid */
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '40px',
+                        justifyContent: 'center',
+                        padding: '20px 5vw 40px'
+                    }}
+                >
+                    {reels.map((reel) => (
+                        <ReelTile key={reel.id} reel={reel} />
+                    ))}
+                </motion.div>
+            )}
 
             {/* View More / Show Less Button - Bottom Right */}
-            <div className="container" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '5vw', marginTop: '20px' }}>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                padding: '20px 5vw 0',
+                position: 'relative',
+                zIndex: 20
+            }}>
                 <motion.button
                     onClick={() => setShowAll(!showAll)}
-                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
+                    whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(114, 65, 255, 0.4)' }}
                     whileTap={{ scale: 0.95 }}
                     style={{
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '10px',
-                        padding: '14px 28px',
+                        padding: '16px 32px',
                         borderRadius: '100px',
-                        background: 'var(--glass-bg)',
-                        backdropFilter: 'var(--glass-blur)',
-                        border: '1px solid var(--glass-border)',
-                        color: 'var(--text-main)',
-                        fontWeight: 600,
-                        fontSize: '0.95rem',
+                        background: 'var(--accent-vibrant)',
+                        color: '#ffffff',
+                        fontWeight: 700,
+                        fontSize: '1rem',
+                        letterSpacing: '0.5px',
                         cursor: 'pointer',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-                        transition: 'border-color 0.3s ease, background-color 0.3s ease'
+                        boxShadow: '0 8px 25px rgba(114, 65, 255, 0.3)',
+                        border: 'none',
+                        transition: 'all 0.3s ease'
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--accent-vibrant)'}
-                    onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--glass-border)'}
                 >
-                    {showAll ? 'Show Less' : 'View More'}
-                    {showAll ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                    {showAll ? 'Show Less' : 'View More Clips (15)'}
+                    {showAll ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </motion.button>
             </div>
 
