@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -17,6 +16,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Work', href: '#work' },
     { name: 'Motion', href: '#motion' },
+    { name: 'Editorial', href: '#editorial' },
     { name: 'CV', href: '#resume' },
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
@@ -31,7 +31,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Links */}
-        <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }} className="desktop-menu">
+        <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }} className="desktop-menu">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} style={{ fontWeight: 500, fontSize: '0.9rem', color: 'var(--text-muted)' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--text-main)'} onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-muted)'}>
               {link.name}
@@ -54,8 +54,6 @@ const Navbar = () => {
           .mobile-toggle { display: block !important; }
         }
       `}</style>
-
-      {/* Mobile Menu Overlay could be added here */}
     </nav>
   );
 };

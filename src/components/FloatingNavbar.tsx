@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
-import { Home, Briefcase, Video, FileText, Layers, Mail } from 'lucide-react';
+import { Home, Briefcase, Video, BookOpen, FileText, Layers, Mail } from 'lucide-react';
 
 const FloatingNavbar = () => {
     const navLinks = [
         { name: 'Home', icon: <Home size={18} />, href: '#' },
         { name: 'Work', icon: <Briefcase size={18} />, href: '#work' },
         { name: 'Motion', icon: <Video size={18} />, href: '#motion' },
+        { name: 'Editorial', icon: <BookOpen size={18} />, href: '#editorial' },
         { name: 'CV', icon: <FileText size={18} />, href: '#resume' },
         { name: 'Services', icon: <Layers size={18} />, href: '#services' },
         { name: 'Contact', icon: <Mail size={18} />, href: '#contact' },
@@ -32,7 +33,7 @@ const FloatingNavbar = () => {
                     backdropFilter: 'var(--glass-blur)',
                     border: '1px solid var(--glass-border)',
                     borderRadius: '50px',
-                    boxShadow: '0 10px 40px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.15)' // Inner glow added here
+                    boxShadow: '0 10px 40px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.15)'
                 }}
             >
                 {navLinks.map((link) => (
@@ -42,10 +43,10 @@ const FloatingNavbar = () => {
                         whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
                         whileTap={{ scale: 0.95 }}
                         style={{
-                            padding: '10px 20px',
+                            padding: '10px 18px',
                             borderRadius: '24px',
                             color: 'var(--text-main)',
-                            fontSize: '0.9rem',
+                            fontSize: '0.88rem',
                             fontWeight: 500,
                             display: 'flex',
                             alignItems: 'center',

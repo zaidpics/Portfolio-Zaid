@@ -4,6 +4,7 @@ import FloatingNavbar from './components/FloatingNavbar';
 import Hero from './components/Hero';
 import Work from './components/Work';
 import MotionReel from './components/MotionReel';
+import EditorialShowcase from './components/EditorialShowcase';
 import CV from './components/CV';
 import Services from './components/Services';
 import About from './components/About';
@@ -38,6 +39,7 @@ function App() {
         <About />
         <Work />
         <MotionReel />
+        <EditorialShowcase />
         <CV />
         <Services />
         <Contact />
